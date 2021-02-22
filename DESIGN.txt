@@ -1,0 +1,34 @@
+card generator
+--------------
+
+deck has name, cards
+
+card has zones
+zone has color, image, text, value, side value (if different fram value)
+value can be
+ - one of array
+ - number (x to y)
+ - random number (between x and y)
+
+output: json with all decks (decks.json)
+
+[
+	{
+		name: '',
+		cards: [
+			{
+				zones: [
+					{
+						color:
+						image:
+						text:
+						value:
+						side value:
+					},
+				]
+			},
+			// more cards
+		]
+	},
+	// more decks
+]
