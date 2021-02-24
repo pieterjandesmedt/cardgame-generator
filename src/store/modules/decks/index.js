@@ -1,7 +1,7 @@
 import cuid from 'cuid';
 
 const initialState = {
-	decks: []
+	decks: [],
 };
 
 const getters = {
@@ -9,19 +9,23 @@ const getters = {
 };
 
 const actions = {
-	addDeckToDecks({ commit	}, payload) {
+	addDeckToDecks({ commit }, payload) {
 		commit('addDeckToDecks', payload);
-	}
+	},
 };
 const mutations = {
 	addDeckToDecks(state, payload) {
 		if (payload.id) {
-			state.decks.splice(state.decks.findIndex(c => c.id === payload.id), 1, payload);
+			state.decks.splice(
+				state.decks.findIndex(c => c.id === payload.id),
+				1,
+				payload,
+			);
 		} else {
 			const id = cuid();
 			// deep clone
 			// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign
-			const newDeck = Object.assign({}, {	id }, JSON.parse(JSON.stringify(payload)));
+			const newDeck = Object.assign({}, { id }, JSON.parse(JSON.stringify(payload)));
 			state.decks.push(newDeck);
 		}
 	},

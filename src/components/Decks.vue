@@ -1,25 +1,20 @@
 <template>
-	<div v-if="currentDeck.cards.length > 0 || decks.length > 0" class="decks">
-		<h3>Deck preview</h3>
+	<div v-if="currentDeck && currentDeck.cardSets.length > 0" class="decks">
+		<h3 class="is-size-4 mt-4">Deck preview</h3>
 		<deck-preview :deck="currentDeck"></deck-preview>
-		<div v-for="deck in decks" :key="deck.id">
-			<deck-preview :deck="deck"></deck-preview>
-		</div>
 	</div>
 </template>
 
 <script>
-	import { mapGetters } from 'vuex';
-	import DeckPreview from './display/DeckPreview.vue';
+import { mapGetters } from 'vuex';
+import DeckPreview from './display/DeckPreview.vue';
 
-	export default {
-		components: { DeckPreview },
-		computed: {
-			...mapGetters(['currentDeck', 'decks'])
-		}
-	};
-
+export default {
+	components: { DeckPreview },
+	computed: {
+		...mapGetters(['currentDeck']),
+	},
+};
 </script>
 
-<style>
-</style>
+<style></style>

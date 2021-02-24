@@ -1,7 +1,0 @@
-{
-	"root": true,
-	"extends": "digitalcomet/vue",
-	"rules": {
-		"no-console": 0
-	}
-}

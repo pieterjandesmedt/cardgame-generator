@@ -1,34 +1,29 @@
 <template>
-	<el-card class="box-card">
-		<zone v-for="(zone, index) in zones" :key="zone.id" :zone="zone" :value="values[index]"></zone>
-	</el-card>
+	<div class="box image is-3by4 is-relative">
+		<div class="box-card is-flex-direction-column is-flex m-2">
+			<zone v-for="(zone, index) in zones" :key="zone.id" :zone="zone" :value="values[index]"></zone>
+		</div>
+	</div>
 </template>
 
 <script>
-	import Zone from './Zone.vue';
+import Zone from './Zone.vue';
 
-	export default {
-		components: { Zone },
-		props: ['zones', 'values'],
-	};
+export default {
+	components: { Zone },
+	props: ['zones', 'values'],
+};
 </script>
 
-<style>
-	.box-card {
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
+<style lang="scss">
+.box-card {
+	width: calc(100% - 1em);
+	height: calc(100% - 1em);
+	position: absolute;
+	top: 0;
+	left: 0;
+	&.m-2 {
+		margin: 0.5em !important;
 	}
-
-	.box-card .el-card__body {
-		height: 100%;
-		position: relative;
-		box-sizing: border-box;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		padding: .5em;
-	}
+}
 </style>

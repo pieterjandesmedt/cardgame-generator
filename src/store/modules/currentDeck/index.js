@@ -26,8 +26,8 @@ const actions = {
 	updateCardsInDeck({ commit }, payload) {
 		commit('updateCardsInDeck', payload);
 	},
-	deleteCardsFromDeck({ commit }, payload) {
-		commit('deleteCardsFromDeck', payload);
+	deleteCardSetFromDeck({ commit }, payload) {
+		commit('deleteCardSetFromDeck', payload);
 	},
 };
 
@@ -36,9 +36,14 @@ const mutations = {
 		state.name = payload;
 	},
 	updateDeckColor(state, payload) {
-		state.color = payload;
+		state.color = payload.hex;
 	},
 	updateCardsInDeck(state, payload) {
+		console.log('payload:', payload);
+		console.log(
+			'state.cards:',
+			state.cards.map(c => c.id),
+		);
 		const index = state.cards.findIndex(c => c.id === payload.id);
 		if (index) {
 			state.cards.splice(index, 1, JSON.parse(JSON.stringify(payload)));
@@ -57,8 +62,8 @@ const mutations = {
 		const newCard = Object.assign({}, JSON.parse(JSON.stringify(payload)), { id });
 		state.cards.push(newCard);
 	},
-	deleteCardsFromDeck(state, payload) {
-		const index = state.cards.findIndex(c => c.id === payload.id);
+	deleteCardSetFromDeck(state, id) {
+		const index = state.cards.findIndex(c => c.id === id);
 		if (index !== -1) state.cards.splice(index, 1);
 	},
 };
