@@ -35,6 +35,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { flatten, xprod, pick } from 'ramda';
+import cuid from 'cuid';
 import ColorPicker from '@/components/ColorPicker.vue';
 import Card from './Card.vue';
 import Download from './../Download.vue';
@@ -93,7 +94,6 @@ export default {
 		},
 		generateCards() {
 			const allCards = [];
-			let id = 0;
 			this.deck.cardSets.forEach(card => {
 				for (let index = 0; index < this.numberOfCards(card); index++) {
 					const zoneValues = this.values(card)[index];
@@ -102,9 +102,8 @@ export default {
 						zone.value = zoneValues[i];
 						if (!zone.text) delete zone.text;
 					});
-					const newCard = Object.assign({}, { id, zones: JSON.parse(JSON.stringify(zones)) });
+					const newCard = Object.assign({}, { id: cuid(), zones: JSON.parse(JSON.stringify(zones)) });
 					allCards.push(newCard);
-					id++;
 				}
 			});
 			return allCards;
