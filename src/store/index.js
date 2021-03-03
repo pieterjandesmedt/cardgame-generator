@@ -23,6 +23,8 @@ const initialZone = {
 export default new Vuex.Store({
 	state: {
 		name: '',
+		ratio: 'is-3by4',
+		size: 20,
 		color: '#009CE0',
 		cardSets: [],
 		editingCardSetId: '',
@@ -69,6 +71,16 @@ export default new Vuex.Store({
 		setEditingCardSetId(state, payload) {
 			state.editingCardSetId = payload;
 		},
+		setCardRatio(state, payload) {
+			state.ratio = payload;
+		},
+		setCardSize(state, payload) {
+			try {
+				state.size = parseInt(payload, 10);
+			} catch (err) {
+				console.error('Error parsing card size:', err);
+			}
+		},
 	},
 	actions: {
 		updateDeckName({ commit }, payload) {
@@ -103,6 +115,12 @@ export default new Vuex.Store({
 		},
 		setEditingCardSetId({ commit }, id) {
 			commit('setEditingCardSetId', id);
+		},
+		setCardRatio({ commit }, ratio) {
+			commit('setCardRatio', `is-${ratio.replaceAll(' ', '')}`);
+		},
+		setCardSize({ commit }, size) {
+			commit('setCardSize', size);
 		},
 	},
 	getters: {
