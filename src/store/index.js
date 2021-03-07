@@ -30,6 +30,16 @@ export default new Vuex.Store({
 		editingCardSetId: '',
 	},
 	mutations: {
+		setDeck(state, payload) {
+			if (payload.deck) {
+				const { name, ratio, size, color, cardSets } = payload.deck;
+				this.state.name = name;
+				this.state.ratio = ratio;
+				this.state.size = size;
+				this.state.color = color;
+				this.state.cardSets.splice(0, this.state.cardSets.length, ...cardSets);
+			}
+		},
 		updateDeckName(state, payload) {
 			state.name = payload;
 		},
@@ -83,6 +93,9 @@ export default new Vuex.Store({
 		},
 	},
 	actions: {
+		setDeck({ commit }, payload) {
+			commit('setDeck', payload);
+		},
 		updateDeckName({ commit }, payload) {
 			commit('updateDeckName', payload);
 		},

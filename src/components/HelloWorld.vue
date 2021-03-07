@@ -1,6 +1,7 @@
 <template>
 	<div class="container is-fluid">
 		<h1 class="is-size-3 mt-4">Card deck generator</h1>
+		<upload></upload>
 		<decks></decks>
 		<div class="columns mt-4">
 			<div class="column is-one-third-widescreen is-one-quarter-fullhd">
@@ -17,12 +18,14 @@
 import AddCardSet from './AddCardSet.vue';
 import CardSetPreview from './display/CardSetPreview.vue';
 import Decks from './Decks.vue';
+import Upload from './Upload.vue';
 
 export default {
 	components: {
 		AddCardSet,
 		CardSetPreview,
 		Decks,
+		Upload,
 	},
 };
 </script>
